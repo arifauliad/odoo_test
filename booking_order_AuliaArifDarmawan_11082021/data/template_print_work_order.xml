@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="template_print_work_order">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <style>
+                        table, td, th, tr{
+                          border: 1px solid black;
+                        }
+
+                        table {
+                          width: 100%;
+                          border-collapse: collapse;
+                        }
+                    </style>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>
+                                    <t t-esc="doc.wo_number"/>
+                                </th>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <th>Team Name</th>
+                                <td><t t-esc="doc.team.team_name"/></td>
+                                <th>Customer</th>
+                                <td><t t-esc="doc.bo_ref.partner_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <th>Booking Order Ref</th>
+                                <td><t t-esc="doc.bo_ref.name"/></td>
+                                <th>Date</th>
+                                <td><t t-esc="doc.date_start"/> - <t t-esc="doc.date_end"/></td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>
+                                    NOTES:
+                                <p><t t-esc="doc.notes"/></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Signature:
+
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <report
+            id="report_print_work_order"
+            string="Report Work Order"
+            model="work.order"
+            report_type="qweb-pdf"
+            name="booking_order_AuliaArifDarmawan_11082021.template_print_work_order"
+            file="booking_order_AuliaArifDarmawan_11082021.template_print_work_order"
+        />
+    </data>
+</odoo>
